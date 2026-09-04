@@ -1,10 +1,12 @@
-const StarshipCard = ({ ship }) => {
+const StarshipCard = ({
+  ship: { name, starship_class, manufacturer, model },
+}) => {
   return (
     <div>
-      <h3>{ship.name}</h3>
-      <p>Class: {ship.starship_class}</p>
-      <p>Manufacturer: {ship.manufacturer}</p>
-      <p>Model: {ship.model}</p>
+      <h3>{name}</h3>
+      <p>Class: {starship_class}</p>
+      <p>Manufacturer: {manufacturer}</p>
+      <p>Model: {model}</p>
     </div>
   );
 };

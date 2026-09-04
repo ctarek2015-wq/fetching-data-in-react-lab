@@ -1,8 +1,14 @@
 const API_URL = "https://swapi.info/api/starships";
 
 const index = async () => {
-  const data = (await fetch(API_URL)).json();
-  return data;
+  try {
+    const res = await fetch(API_URL);
+    if (!res.ok) throw new Error("Failed to fetch starships.");
+    const data = await res.json();
+    return data.results;
+  } catch (error) {}
+  console.error("starshipService error:", error);
+  throw error;
 };
 
 export { index };

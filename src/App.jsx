@@ -1,17 +1,12 @@
 import { useState, useEffect } from "react";
 import * as starshipService from "./services/starshipService";
 import StarshipList from "./components/StarshipList/StarshipList";
+import StarshipSearch from "./components/StarshipSearch/StarshipSearch";
 import "./App.css";
 
 function App() {
-  const [ships, setShips] = useState([
-    {
-      name: "",
-      starship_class: "",
-      manufacturer: "",
-      model: "",
-    },
-  ]);
+  const [ships, setShips] = useState([]);
+  const [filteredShips, setFilteredShips] = useState([]);
   useEffect(() => {
     const fetchList = async () => {
       setShips(await starshipService.index());
@@ -19,12 +14,14 @@ function App() {
     fetchList();
   }, []);
 
+  if (ships.length === 0) {
+    return <h1>Loading…</h1>;
+  }
   return (
     <>
       <h1>Star Wars API</h1>
       <h3>Search</h3>
-      <h3>Starships</h3>
-      <p>Number of Results: {ships.length}</p>
+      <StarshipSearch />
 
       <StarshipList ships={ships} />
     </>
