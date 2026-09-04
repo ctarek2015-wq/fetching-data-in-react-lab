@@ -2,7 +2,11 @@ import StarshipCard from "../StarshipCard/StarshipCard";
 
 const StarshipList = ({ ships, isLoading, error }) => {
   if (isLoading) {
-    return <p>Loading…</p>;
+    return (
+      <h1>
+        <strong>Loading…</strong>
+      </h1>
+    );
   }
 
   if (error) {

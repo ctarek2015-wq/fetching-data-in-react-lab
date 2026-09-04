@@ -6,24 +6,39 @@ import "./App.css";
 
 function App() {
   const [ships, setShips] = useState([]);
-  const [filteredShips, setFilteredShips] = useState([]);
+  const [displayedShips, setDisplayedShips] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [isFiltered, setIsFiltered] = useState(false);
+
   useEffect(() => {
     const fetchList = async () => {
-      setShips(await starshipService.index());
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await starshipService.index();
+        setShips(data);
+        setDisplayedShips(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchList();
   }, []);
 
-  if (ships.length === 0) {
-    return <h1>Loading…</h1>;
-  }
   return (
     <>
       <h1>Star Wars API</h1>
       <h3>Search</h3>
       <StarshipSearch />
 
-      <StarshipList ships={ships} />
+      <StarshipList
+        ships={displayedShips}
+        isLoading={isLoading}
+        error={error}
+      />
     </>
   );
 }
