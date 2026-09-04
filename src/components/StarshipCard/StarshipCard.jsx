@@ -2,11 +2,17 @@ const StarshipCard = ({
   ship: { name, starship_class, manufacturer, model },
 }) => {
   return (
-    <div>
-      <h3>{name}</h3>
-      <p>Class: {starship_class}</p>
-      <p>Manufacturer: {manufacturer}</p>
-      <p>Model: {model}</p>
+    <div className="starship-card">
+      <h3 className="card-title">{name}</h3>
+      <p className="card-field">
+        <span className="card-label">Class:</span> {starship_class}
+      </p>
+      <p className="card-field">
+        <span className="card-label">Manufacturer:</span> {manufacturer}
+      </p>
+      <p className="card-field">
+        <span className="card-label">Model:</span> {model}
+      </p>
     </div>
   );
 };

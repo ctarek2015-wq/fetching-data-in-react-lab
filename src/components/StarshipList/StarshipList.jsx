@@ -14,15 +14,19 @@ const StarshipList = ({ ships, isLoading, error }) => {
   }
 
   return (
-    <>
-      <h2>Starships</h2>
-      <p>Number of Results: {ships.length}</p>
-      <div>
+    <section className="starship-list">
+      <h2 className="list-header">Starships</h2>
+      <p className="list-meta">
+        Number of Results: <strong>{ships.length}</strong>
+      </p>
+      <ul className="card-grid">
         {ships.map((ship, idx) => (
-          <StarshipCard key={idx} ship={ship} />
+          <li key={idx}>
+            <StarshipCard ship={ship} />
+          </li>
         ))}
-      </div>
-    </>
+      </ul>
+    </section>
   );
 };
 

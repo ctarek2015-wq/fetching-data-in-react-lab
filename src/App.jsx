@@ -53,20 +53,24 @@ function App() {
   };
 
   return (
-    <>
-      <h1>Star Wars API</h1>
-      <StarshipSearch
-        handleSearch={handleSearch}
-        resetSearch={resetSearch}
-        isFiltered={isFiltered}
-      />
+    <div className="app-container">
+      <div className="app-header">
+        <h1>Star Wars API</h1>
+        <StarshipSearch
+          handleSearch={handleSearch}
+          resetSearch={resetSearch}
+          isFiltered={isFiltered}
+        />
+      </div>
 
-      <StarshipList
-        ships={displayedShips}
-        isLoading={isLoading}
-        error={error}
-      />
-    </>
+      <div className="app-content">
+        <StarshipList
+          ships={displayedShips}
+          isLoading={isLoading}
+          error={error}
+        />
+      </div>
+    </div>
   );
 }
 
