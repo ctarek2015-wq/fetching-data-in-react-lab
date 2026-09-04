@@ -28,11 +28,35 @@ function App() {
     fetchList();
   }, []);
 
+  const handleSearch = (searchTerm) => {
+    if (!searchTerm || !searchTerm.trim()) {
+      setDisplayedShips(ships);
+      setIsFiltered(false);
+      return;
+    }
+
+    const query = searchTerm.toLowerCase().trim();
+    const filtered = ships.filter((ship) =>
+      ship.name.toLowerCase().includes(query),
+    );
+    setDisplayedShips(filtered);
+    setIsFiltered(true);
+  };
+
+  const handleReset = () => {
+    setDisplayedShips(ships);
+    setIsFiltered(false);
+  };
+
   return (
     <>
       <h1>Star Wars API</h1>
       <h3>Search</h3>
-      <StarshipSearch />
+      <StarshipSearch
+        handleSearch={handleSearch}
+        handleReset={handleReset}
+        isFiltered={isFiltered}
+      />
 
       <StarshipList
         ships={displayedShips}
