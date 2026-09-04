@@ -36,8 +36,12 @@ function App() {
     }
 
     const query = searchTerm.toLowerCase().trim();
-    const filtered = ships.filter((ship) =>
-      ship.name.toLowerCase().includes(query),
+    const filtered = ships.filter(
+      ({ name, model, manufacturer, starship_class }) =>
+        name.toLowerCase().includes(query) ||
+        model.toLowerCase().includes(query) ||
+        manufacturer.toLowerCase().includes(query) ||
+        starship_class.toLowerCase().includes(query),
     );
     setDisplayedShips(filtered);
     setIsFiltered(true);
