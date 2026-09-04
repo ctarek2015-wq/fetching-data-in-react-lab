@@ -1,17 +1,23 @@
-import { useEffect, useState } from "react";
-import * as starshipService from "../../services/starshipService";
 import StarshipCard from "../StarshipCard/StarshipCard";
 
-const StarshipList = ({ ships }) => {
+const StarshipList = ({ ships, isLoading, error }) => {
+  if (isLoading) {
+    return <p>Loading…</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
   return (
     <>
-      <h3>Starships</h3>
+      <h2>Starships</h2>
       <p>Number of Results: {ships.length}</p>
-      <ul>
-        {ships.map((ship, idx) => {
-          return <StarshipCard key={idx} ship={ship} />;
-        })}
-      </ul>
+      <div>
+        {ships.map((ship, idx) => (
+          <StarshipCard key={idx} ship={ship} />
+        ))}
+      </div>
     </>
   );
 };

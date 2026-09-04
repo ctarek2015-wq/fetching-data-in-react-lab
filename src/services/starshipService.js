@@ -5,7 +5,7 @@ const index = async () => {
     const res = await fetch(API_URL);
     if (!res.ok) throw new Error("Failed to fetch starships.");
     const data = await res.json();
-    return data.results;
+    return data;
   } catch (error) {}
   console.error("starshipService error:", error);
   throw error;
