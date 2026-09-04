@@ -1,17 +1,32 @@
 import { useState, useEffect } from "react";
 import * as starshipService from "./services/starshipService";
-
+import StarshipList from "./components/StarshipList/StarshipList";
 import "./App.css";
 
 function App() {
-  const fetchData = async () => {
-    const data = await starshipService.index();
-    console.log(data);
-  };
-  fetchData();
+  const [ships, setShips] = useState([
+    {
+      name: "",
+      starship_class: "",
+      manufacturer: "",
+      model: "",
+    },
+  ]);
+  useEffect(() => {
+    const fetchList = async () => {
+      setShips(await starshipService.index());
+    };
+    fetchList();
+  }, []);
+
   return (
     <>
-      <h1>heeeeeeeeeeey</h1>
+      <h1>Star Wars API</h1>
+      <h3>Search</h3>
+      <h3>Starships</h3>
+      <p>Number of Results: {ships.length}</p>
+
+      <StarshipList ships={ships} />
     </>
   );
 }
