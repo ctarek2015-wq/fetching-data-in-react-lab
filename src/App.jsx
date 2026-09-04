@@ -43,7 +43,7 @@ function App() {
     setIsFiltered(true);
   };
 
-  const handleReset = () => {
+  const resetSearch = () => {
     setDisplayedShips(ships);
     setIsFiltered(false);
   };
@@ -51,10 +51,9 @@ function App() {
   return (
     <>
       <h1>Star Wars API</h1>
-      <h3>Search</h3>
       <StarshipSearch
         handleSearch={handleSearch}
-        handleReset={handleReset}
+        resetSearch={resetSearch}
         isFiltered={isFiltered}
       />
 
